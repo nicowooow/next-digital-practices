@@ -1,0 +1,32 @@
+repos: # esto nos dice que se realizara para los repositorios
+  - repo: local # nos dice que funcionara en el repositorio local
+    hooks:
+      - id: ruff-check # el identificador
+        name: ruff check # como se llamara la accion
+        entry: uv run --project python-cicd-kata ruff check --fix # <- usa el entorno de la kata
+        language: system # quien lo ejecutara
+        types: [python] # que tipo de lenguaje lo usa
+        files: ^python-cicd-kata/ # <- solo archivos de la kata
+
+      - id: ruff-format
+        name: ruff format
+        entry: uv run --project python-cicd-kata ruff format # <-
+        language: system
+        types: [python]
+        files: ^python-cicd-kata/ # <-
+
+      - id: check-types
+        name: check types
+        pass_filenames: false
+        entry: uv run --directory python-cicd-kata python -m pyright # <- se ejecuta dentro de la carpeta
+        language: system
+        types: [python]
+        files: ^python-cicd-kata/ # <-
+
+      - id: run-test
+        name: run test
+        pass_filenames: false
+        entry: uv run --directory python-cicd-kata python -m pytest # <-
+        language: system
+        types: [python]
+        files: ^python-cicd-kata/ # <-
