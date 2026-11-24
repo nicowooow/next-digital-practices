@@ -5,4 +5,4 @@ def test_result_is_a_valid_dice_value() -> None:
     for _ in range(100):
         result = get_dice_roll()
         assert isinstance(result, int)
-        assert result in {2, 3, 4, 5, 6, 7}  # lista de 2 al 7
+        assert result in {3, 4, 5, 6, 7, 8}  # cambio de lista, de 2 al 7 a, 3 al 8
